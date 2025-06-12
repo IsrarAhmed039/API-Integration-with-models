@@ -1,24 +1,22 @@
-class PostModel {
-  int? userId;
-  int? id;
-  String? title;
-  String? body;
+class TaskModel {
+  final String id;
+  final String name;
+  final String body;
 
-  PostModel({ this.userId, this.id, this.title, this.body});
+  TaskModel({required this.id, required this.name, required this.body});
 
-  PostModel.fromJson(Map<String, dynamic> json) {
-    userId = json['userId'];
-    id = json['id'];
-    title = json['title'];
-    body = json['body'];
+  factory TaskModel.fromJson(Map<String, dynamic> json) {
+    return TaskModel(
+      id: json['_id'] ?? '',
+      name: json['name'] ?? '',
+      body: json['body'] ?? '',
+    );
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['userId'] = userId;
-    data['id'] = id;
-    data['title'] = title;
-    data['body'] = body;
-    return data;
+    return {
+      'name': name,
+      'body': body,
+    };
   }
 }
